@@ -3,6 +3,7 @@ import Search from "./components/Search"
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import { useDebounce } from "react-use";
+import { updateSearchCount } from "./firebase";
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -45,6 +46,7 @@ const App = () => {
         return;
       }
       setMovieList(data.results || []);
+      updateSearchCount();
     } catch (error) {
       console.log(`Error fetching movies: ${error}`);
       setErrorMessage('Error fetching movies. Please try again later.');
